@@ -1,18 +1,17 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from '../components/app';
+import { browserHistory } from 'react-router';
 import configureStore from '../redux/store';
-import { Provider } from 'react-redux';
+import 'babel-polyfill';
+import { fetchWeather } from '../redux/actions'
 
-let initialState = {
-  unit: 'metrical'
-}
+import Root from './root';
+import routes from './routes';
 
-let store = configureStore(initialState)
+
+const store = configureStore();
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <Root store={store} history={browserHistory} routes={routes}/>,
    document.getElementById('app')
  );
