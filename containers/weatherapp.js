@@ -3,6 +3,16 @@ import { connect } from 'react-redux'
 import { fetchWeather } from '../redux/actions'
 import Test from '../components/test'
 import Loader from 'react-loader'
+import Day from '../client/images/day.jpg'
+
+const width = 400;
+const height = width * 1.9627;
+const imgStyle = {
+  backgroundImage: 'url(' + Day + ')',
+  backgroundSize: 'contain',
+  width: width,
+  height: height
+}
 
 class WeatherApp extends Component {
 
@@ -81,13 +91,15 @@ class WeatherApp extends Component {
   render(){
     return (
       <Loader loaded={this.props.loaded} lines={8} length={0} width={15} radius={30} color="#46ca75" top="50%" left="10%">
-        <h1>Weather Route</h1>
-        <Test city={this.props.weather ? this.props.weather.city.name : null}
-              temp={this.props.weather ? this.props.weather.list[0].main.temp : null}
-              unit={this.props.unit}/>
-        <input type="text" value={this.state.input} onChange={this.onChange.bind(this)} />
-        <button onClick={this.onClick.bind(this)}>Search</button>
-        <button onClick={this.changeUnit.bind(this)}>Change Unit</button>
+        <div style={imgStyle}>
+          <h1>Weather Route</h1><i className="wi wi-day-sunny"></i>
+          <Test city={this.props.weather ? this.props.weather.city.name : null}
+                temp={this.props.weather ? this.props.weather.list[0].main.temp : null}
+                unit={this.props.unit}/>
+          <input type="text" value={this.state.input} onChange={this.onChange.bind(this)} />
+          <button type="btn" className="btn btn-default" onClick={this.onClick.bind(this)}>Search</button>
+          <button type="btn" className="btn btn-default" onClick={this.changeUnit.bind(this)}>Change Unit</button>
+        </div>
       </Loader>
   );
   }

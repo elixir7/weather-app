@@ -4,6 +4,8 @@ module.exports = {
   devtools: 'inline-source-map',
   entry: [
     'webpack-hot-middleware/client',
+    './client/css/weather-icons-wind.min.css',
+    './client/css/weather-icons.min.css',
     './client/client.js'
   ],
   output: {
@@ -22,10 +24,17 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        //query är samma sak som att sätta up en .babelrc fil
         query: {
           presets: ['react', 'es2015', 'react-hmre']
         }
+      },
+      {
+          test   : /\.css$/,
+          loaders : ['style', 'css']
+      },
+      {
+          test: /\.(png|jp(e?)g|svg|eot|woff(2?)|ttf)((\?|&).+)?$/,
+          loader: 'file?name=[hash].[ext]',
       }
     ]
   }
