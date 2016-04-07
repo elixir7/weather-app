@@ -1,11 +1,10 @@
 import fetch from 'isomorphic-fetch'
 
 export const REQUEST_WEATHER = 'REQUEST_WEATHER';
-function requestWeather(lat, lon) {
+function requestWeather(params) {
   return {
     type: REQUEST_WEATHER,
-    lat,
-    lon
+    pos: params.pos
   }
 }
 
@@ -14,19 +13,43 @@ function receiveWeather(json) {
   return {
     type: RECEIVE_WEATHER,
     weather: json,
-    receivedAt: Date.now()
+    receivedAt: Date.now(),
   }
+}
+
+export const CHANGE_UNIT = 'CHANGE_UNIT';
+function updateUnit(unit){
+  return {
+    type: CHANGE_UNIT,
+    unit
+  }
+}
+
+function createQuery(params){
+  //params is an object containing pos, city and unit
+  if(params.pos.city){
+    return 'q=' + params.pos.city + '&units=' + params.unit;
+  } else {
+    return 'lat=' + params.pos.coords.lat + '&lon=' + params.pos.coords.lon + '&units=' + params.unit;
+  }
+
 }
 
 const baseUrl = 'http://api.openweathermap.org/data/2.5/forecast?'
 const apiKey = '&appid=f06dae075f128fd55d49a2655d6e1a9a'
-export function fetchWeather(lat, lon) {
+export function fetchWeather(params, currentUnit) {
 
   return function (dispatch) {
 
-    dispatch(requestWeather(lat, lon))
+    const query = createQuery(params);
 
-    return fetch(baseUrl + 'lat=' + lat + '&lon=' + lon + apiKey)
+    if(params.unit !== currentUnit && currentUnit !== undefined){
+      dispatch(updateUnit(params.unit));
+    }
+
+    dispatch(requestWeather(params));
+
+    return fetch(baseUrl + query + apiKey)
 
       .then(response => response.json())
       .then(json =>
@@ -34,14 +57,5 @@ export function fetchWeather(lat, lon) {
         dispatch(receiveWeather(json))
       )
 
-  }
-}
-
-export const Actions = {
-  changeUnit(unit){
-    return {
-      type: 'CHANGE_UNIT',
-      unit: unit
-    }
   }
 }
