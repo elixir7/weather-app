@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A simple weather app in java script",
   "scripts": {
-    "serve": "nodemon server/server.js --ignore components/ --ignore client/ --ignore /redux --ignore containers/"
+    "serve": "nodemon server/server.js --ignore components/ --ignore /redux --ignore containers/"
   },
   "repository": {
     "type": "git",

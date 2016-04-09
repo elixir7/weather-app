@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 
 module.exports = {
-  devtools: 'inline-source-map',
+  devtool: 'inline-source-map',
   entry: [
     'webpack-hot-middleware/client',
     './client/css/weather-icons-wind.min.css',

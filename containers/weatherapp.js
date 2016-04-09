@@ -1,24 +1,30 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchWeather } from '../redux/actions'
-import Test from '../components/test'
 import Loader from 'react-loader'
-import Day from '../client/images/day.jpg'
 
-const width = 400;
-const height = width * 1.9627;
+import Morning from '../client/images/morning.jpg'
+import Day from '../client/images/day.jpg'
+import Night from '../client/images/night.jpg'
+import Test from '../components/test'
+import SearchBox from '../components/searchbox'
+import TodayWeatherBox from '../components/todayweatherbox'
+import FutureWeatherBox from '../components/futureweatherbox'
+
+// const height = width * (2000/1124);
 const imgStyle = {
-  backgroundImage: 'url(' + Day + ')',
-  backgroundSize: 'contain',
-  width: width,
-  height: height
+  backgroundImage: 'url(' + Night + ')',
+  backgroundSize: 'cover',
+  width: "100%",
 }
 
 class WeatherApp extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {input: ''};
+    this.search = this.search.bind(this);
+    this.changeUnit = this.changeUnit.bind(this);
+    this.evalBackground = this.evalBackground.bind(this);
   }
 
   componentDidMount(){
@@ -58,20 +64,15 @@ class WeatherApp extends Component {
     }
   }
 
-  onChange(e){
-    this.setState({input: e.target.value});
-  }
-
-  onClick(){
+  search(city){
     this.props.dispatch(fetchWeather(
       {
         pos: {
-          city: this.state.input
+          city: city
         },
         unit: this.props.unit
       }
     ));
-    this.setState({input: ''})
   }
 
   changeUnit(){
@@ -88,17 +89,37 @@ class WeatherApp extends Component {
     this.props.dispatch(fetchWeather(info, this.props.unit))
   }
 
+  evalBackground(){
+    if(this.props.weather){
+      let background
+      const time = Number(this.props.weather.list[0].dt_txt.substring(11, 13));
+      if(time > 0 && time <= 3 || time >= 18 ){
+        backgroud = Night;
+      }else if(time >= 6 && time > 12){
+        background = Morning;
+      }else {
+        background = Day;
+      }
+    }
+  }
+
   render(){
     return (
-      <Loader loaded={this.props.loaded} lines={8} length={0} width={15} radius={30} color="#46ca75" top="50%" left="10%">
+      <Loader loaded={this.props.loaded} lines={8} length={0} width={15} radius={30} color="#46ca75" loadedClassName="loader">
         <div style={imgStyle}>
-          <h1>Weather Route</h1><i className="wi wi-day-sunny"></i>
-          <Test city={this.props.weather ? this.props.weather.city.name : null}
-                temp={this.props.weather ? this.props.weather.list[0].main.temp : null}
-                unit={this.props.unit}/>
-          <input type="text" value={this.state.input} onChange={this.onChange.bind(this)} />
-          <button type="btn" className="btn btn-default" onClick={this.onClick.bind(this)}>Search</button>
-          <button type="btn" className="btn btn-default" onClick={this.changeUnit.bind(this)}>Change Unit</button>
+          <SearchBox search={this.search}/>
+          <TodayWeatherBox
+            changeUnit={this.changeUnit}
+            city={this.props.weather ? this.props.weather.city.name : null}
+            country={this.props.weather ? this.props.weather.city.country : null}
+            temp={this.props.weather ? this.props.weather.list[0].main.temp : null}
+            windSpeed={this.props.weather ? this.props.weather.list[0].wind.speed : null}
+            icon={this.props.weather ? this.props.weather.list[0].weather[0].icon : null}
+            iconID={this.props.weather ? this.props.weather.list[0].weather[0].id : null}
+            unit={this.props.unit}/>
+          <FutureWeatherBox
+            unit={this.props.unit}
+            list={this.props.weather ? this.props.weather.list : null}/>
         </div>
       </Loader>
   );
