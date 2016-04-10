@@ -1,3 +1,4 @@
+//This is the  "the app" page
 import React from 'react';
 
 import Button from './button'

@@ -1,3 +1,4 @@
+//This is a card which displays a picture, the picture name and the creator 
 import React from 'react';
 
 const author = {

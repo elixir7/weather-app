@@ -1,3 +1,4 @@
+//This is the Component that renderd the current temperature with an icon. It also shows where the information is taken from.
 import React from 'react'
 
 import Helpers from './helpers'

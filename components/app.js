@@ -1,3 +1,4 @@
+//This is the base file which wrapps all the content
 import React from 'react';
 
 import Nav from './nav'

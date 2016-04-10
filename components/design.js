@@ -1,3 +1,4 @@
+//This is the design page
 import React from 'react'
 import Card from './Card'
 

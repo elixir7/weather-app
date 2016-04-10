@@ -1,3 +1,4 @@
+//This is navitem that creates a link to the corresponding page on the site
 import React from 'react';
 import { Link } from 'react-router'
 

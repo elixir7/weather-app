@@ -1,3 +1,4 @@
+//This is the container component that handles most of the logic from the components.
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchWeather } from '../redux/actions'
@@ -22,6 +23,7 @@ class WeatherApp extends React.Component {
   }
 
   componentDidMount(){
+    //If geolocation is sucessfull
     const geolocSucess = (pos) => {
       const info = {
         pos: {
@@ -50,7 +52,7 @@ class WeatherApp extends React.Component {
       enableHighAccuracy: true,
       timeout: 5000
     }
-
+    //Tries HTML5 geolocation
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(geolocSucess, geolocError, geolocOptions);
     }

@@ -1,3 +1,4 @@
+//This Component is a item that displays a summury of a day. It is located at the bottom of the application
 import React from 'react';
 
 import Helpers from './helpers'
@@ -30,11 +31,6 @@ export default class FutureWeatherBoxItem extends React.Component {
   }
 
   onClick(){
-    /*const info = {
-      date: this.props.date,
-      icon: this.props.icon,
-      iconID: this.props.iconID,
-    }*/
     this.props.onDayClick(this.props.rawDate);
   }
 

@@ -1,3 +1,4 @@
+//This is the java script page
 import React from 'react';
 
 import Button from './button'

@@ -1,3 +1,5 @@
+//This is a button object which is made for importing.
+//Because the button is in another file it easy to change it here and it will change across the entire page
 const borderRadius = 2;
 const Button = {
   display: 'inline-block',

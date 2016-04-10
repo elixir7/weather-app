@@ -1,3 +1,4 @@
+//This is the store which stores the data. Some middleware is applied for developertools
 import thunkMiddleware from 'redux-thunk'
 import createLogger from 'redux-logger'
 import { applyMiddleware, createStore } from 'redux'

@@ -1,3 +1,4 @@
+//This is the searchbox which let's you search on a city
 import React from 'react';
 
 var searchBorder = {

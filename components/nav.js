@@ -1,3 +1,4 @@
+//This is the Navbar which contains navitems
 import React from 'react';
 import { Link } from 'react-router'
 

@@ -1,3 +1,4 @@
+//This is the root file which imports and renders everything on the page.
 import React from 'react';
 import { render } from 'react-dom';
 import { browserHistory } from 'react-router';

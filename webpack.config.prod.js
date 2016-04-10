@@ -1,3 +1,4 @@
+//Webpack configuration for production
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');

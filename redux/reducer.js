@@ -1,3 +1,4 @@
+//These are the reducers that contains the logic of the store
 import { REQUEST_WEATHER, RECEIVE_WEATHER, CHANGE_UNIT } from './actions'
 export default function reducer(state = {unit: 'metric', loaded: false}, action){
   switch(action.type){

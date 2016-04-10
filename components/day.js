@@ -1,3 +1,4 @@
+//This is the component that shows the forecast of an etire day when a day is clicked.
 import React from 'react';
 
 import Helpers from '../components/helpers'

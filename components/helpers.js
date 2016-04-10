@@ -1,10 +1,11 @@
-
+//This is a object which contains alot of helper functions.
 import Morning from '../client/images/morning.jpg'
 import Day from '../client/images/day.jpg'
 import Night from '../client/images/night.jpg'
 
 const Helpers = {
   evalBackground(timeString){
+    //Evaluates the background depending on the time
     let background
     const time = Number(timeString.substring(11, 13));
     if(time >= 0 && time <= 3 || time > 18 ){
@@ -22,6 +23,7 @@ const Helpers = {
     return imgStyle
   },
   evalUnit(unitText){
+    //Evaluates the unit and reders the corresponding postfix
     if(unitText === 'metric'){
       return '°C'
     }else{
@@ -29,6 +31,7 @@ const Helpers = {
     }
   },
   evalSpeedUnit(unit){
+    //Evaluates the unit and renders the correspingding postfix
     if(unit === "metric"){
       return "m/s"
     } else{
@@ -36,6 +39,7 @@ const Helpers = {
     }
   },
   evalTemp(temp, windSpeed, unit){
+    //Calculates the windchill effect and return what the temperature acctually feels like
     if(temp < 5 && windSpeed > 2){
       const vPow = Math.pow(windSpeed, 0.16);
       const feelsLike = Math.round(13.12 + 0.6215*temp - 11.37*vPow + 0.3965*temp*vPow);
@@ -44,6 +48,7 @@ const Helpers = {
     return ''
   },
   evalIcon(iconNumb, iconID){
+    //Evaluates what class the icon should have.
     let icon = "wi ";
     if(iconNumb.substring(2,3) === "n"){
       if(iconID >= 200 && iconID <= 232 ){
@@ -169,6 +174,7 @@ const Helpers = {
     return (icon);
   },
   evalDate(unix_timestamp){
+    //Evaluates the date and returns a weekday
     const d = new Date(unix_timestamp * 1000);
     const weekday = new Array(7);
     weekday[0] = "Sunday";
@@ -182,6 +188,7 @@ const Helpers = {
     return weekday[d.getDay()];
   },
   evalDT_TXT(dt_txt){
+    //Evaluates and returns the month in words
     const month = Number(dt_txt.substring(5,7));
     if(month === 1){
       return 'January'
@@ -210,6 +217,7 @@ const Helpers = {
     }
   },
   evalDateShort(unix_timestamp){
+    //Evaluates the date and returns the day in a short form
     const d = new Date(unix_timestamp * 1000);
     const weekday = new Array(7);
     weekday[0] = "Sun";
@@ -223,6 +231,7 @@ const Helpers = {
     return weekday[d.getDay()];
   },
   evalMonth(month){
+    //Evaluates the moth and returns it in words
     let monthInWords;
     if(month === "01"){
       monthInWords = "Jan"

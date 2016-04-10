@@ -1,3 +1,4 @@
+//This is the about page
 import React from 'react'
 import Button from './button'
 

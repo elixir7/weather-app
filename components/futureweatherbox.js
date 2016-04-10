@@ -1,3 +1,4 @@
+//This Component acts as a container for all the small days on the buttom of the app. 
 import React from 'react';
 import Helpers from './helpers'
 

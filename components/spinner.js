@@ -1,3 +1,4 @@
+//THis is the spinner that gets renderd when data is beeing fetched
 import React from 'react';
 
 const spinner ={

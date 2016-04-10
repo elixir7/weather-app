@@ -1,3 +1,4 @@
+//This are the actions taht can be dispatched to the store to change the redux store.
 import fetch from 'isomorphic-fetch'
 
 export const REQUEST_WEATHER = 'REQUEST_WEATHER';
