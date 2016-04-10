@@ -4,7 +4,7 @@
   "description": "A simple weather app in java script",
   "scripts": {
     "serve": "nodemon server/server.js --ignore components/ --ignore /redux --ignore containers/",
-    "deploy": "ghpages",
+    "deploy": "ghpages"
   },
   "repository": {
     "type": "git",
