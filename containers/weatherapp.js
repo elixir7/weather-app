@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchWeather } from '../redux/actions'
-import Loader from 'react-loader'
 
 import Helpers from '../components/helpers'
 
@@ -9,13 +8,17 @@ import Spinner from '../components/spinner'
 import SearchBox from '../components/searchbox'
 import TodayWeatherBox from '../components/todayweatherbox'
 import FutureWeatherBox from '../components/futureweatherbox'
+import Day from '../components/day'
 
 class WeatherApp extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {date: null}
     this.search = this.search.bind(this);
     this.changeUnit = this.changeUnit.bind(this);
+    this.onDayClick = this.onDayClick.bind(this);
+    this.closeDay = this.closeDay.bind(this);
   }
 
   componentDidMount(){
@@ -81,26 +84,49 @@ class WeatherApp extends React.Component {
     this.props.dispatch(fetchWeather(info, this.props.unit))
   }
 
+  onDayClick(info){
+    this.setState({date: info}, () => {
+      document.getElementById('popupDay').style.display = 'block';
+      document.getElementById('weatherApp').style.display = 'none';
+    });
+  }
+
+  closeDay(){
+    document.getElementById('popupDay').style.display = 'none';
+    document.getElementById('weatherApp').style.display = 'block';
+  }
+
   render(){
     let loadedApp;
 
     if(this.props.loaded === true){
       loadedApp = <div style={Helpers.evalBackground(this.props.weather.list[0].dt_txt)}>
-        <SearchBox search={this.search}/>
-        <TodayWeatherBox
-          changeUnit={this.changeUnit}
-          city={this.props.weather.city.name}
-          country={this.props.weather.city.country}
-          temp={this.props.weather.list[0].main.temp}
-          windSpeed={this.props.weather.list[0].wind.speed}
-          icon={this.props.weather.list[0].weather[0].icon}
-          iconID={this.props.weather.list[0].weather[0].id}
-          unit={this.props.unit}/>
-        <FutureWeatherBox
+        <Day
+          list={this.props.weather.list}
           unit={this.props.unit}
-          list={this.props.weather.list}/>
+          date={this.state.date}
+          onDayClick={this.onDayClick}
+          closeDay={this.closeDay}/>
+        <div id='weatherApp'>
+          <SearchBox search={this.search}/>
+          <TodayWeatherBox
+            changeUnit={this.changeUnit}
+            city={this.props.weather.city.name}
+            country={this.props.weather.city.country}
+            temp={this.props.weather.list[0].main.temp}
+            windSpeed={this.props.weather.list[0].wind.speed}
+            icon={this.props.weather.list[0].weather[0].icon}
+            iconID={this.props.weather.list[0].weather[0].id}
+            unit={this.props.unit}/>
+          <FutureWeatherBox
+            unit={this.props.unit}
+            list={this.props.weather.list}
+            onDayClick={this.onDayClick}/>
+        </div>
       </div>
-    }else{
+    }/*else if(this.props.loaded === true){
+      loadedApp = <Day list={this.props.weather.list} unit={this.props.unit} onDayClick={this.onDayClick} />
+    }*/else {
       loadedApp = <Spinner />
     }
     return (

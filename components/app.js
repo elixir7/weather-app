@@ -28,7 +28,6 @@ const reset = {
 }
 const wrapper = {
   padding: 0,
-  paddingBottom: 20,
   margin: 0,
   backgroundColor: "#f1f1f1"
 }
@@ -38,7 +37,7 @@ const card = {
   WebkitBorderRadius: 4,
   MozBorderRadius: 4,
   paddingTop: 10,
-  paddingBottom: 20,
+  paddingBottom: 40,
   paddingLeft: 40,
   paddingRight: 40,
   marginBottom: 50
@@ -48,15 +47,15 @@ export default class App extends React.Component {
     return (
       <div className="container-fluid" style={wrapper}>
         <div className="row">
-          <div className="col-xs-12">
+          <div className="col-xs-12 hidden-xs">
             <Nav navData={navLinks}/>
           </div>
         </div>
         <div className="row">
-          <div className="col-xs-12 col-md-offset-1 col-md-4">
+          <div className="col-xs-12 col-sm-4 col-sm-offset-1">
             <WeatherApp />
           </div>
-          <div className="col-md-6 hidden-xs" style={card}>
+          <div className="col-sm-6 hidden-xs" style={card}>
             {this.props.children}
           </div>
         </div>

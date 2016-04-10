@@ -8,7 +8,6 @@ const flexBox ={
 }
 
 export default class FutureWeatherBox extends React.Component {
-
   render() {
     let futureWeatherBoxItem;
     if(this.props.list != null){
@@ -19,9 +18,12 @@ export default class FutureWeatherBox extends React.Component {
               key={key}
               unit={this.props.unit}
               date={Helpers.evalDateShort(item.dt)}
+              rawDate={item.dt_txt}
               temp={item.main.temp}
               icon={item.weather[0].icon}
               iconID={item.weather[0].id}
+              onDayClick={this.props.onDayClick}
+              list={this.props.list}
             />
           );
         }
@@ -29,7 +31,6 @@ export default class FutureWeatherBox extends React.Component {
     }else {
       futureWeatherBoxItem = null
     }
-
 
     return (
       <div className="row">

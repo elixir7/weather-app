@@ -18,13 +18,28 @@ const temp = {
   paddingBottom: 10
 }
 const flexItem ={
-  flexGrow: 1
+  flexGrow: 1,
+  cursor: 'hand'
 }
 
 export default class FutureWeatherBoxItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick(){
+    /*const info = {
+      date: this.props.date,
+      icon: this.props.icon,
+      iconID: this.props.iconID,
+    }*/
+    this.props.onDayClick(this.props.rawDate);
+  }
+
   render() {
     return (
-      <div style={flexItem}>
+      <div style={flexItem} onClick={this.onClick}>
         <div className="row">
           <div className="col-xs-12 text-center">
             <div style={date}>{this.props.date}</div>

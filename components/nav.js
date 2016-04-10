@@ -28,7 +28,7 @@ export default class Nav extends React.Component {
     });
 
     return (
-      <nav className="navbar navbar-default hidden-xs" style={navStyle}>
+      <nav className="navbar navbar-default" style={navStyle}>
         <div className="container-fluid">
           <div className="navbar-header">
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false">

@@ -28,6 +28,13 @@ const Helpers = {
       return '°F'
     }
   },
+  evalSpeedUnit(unit){
+    if(unit === "metric"){
+      return "m/s"
+    } else{
+      return "mph"
+    }
+  },
   evalTemp(temp, windSpeed, unit){
     if(temp < 5 && windSpeed > 2){
       const vPow = Math.pow(windSpeed, 0.16);
@@ -173,6 +180,34 @@ const Helpers = {
     weekday[6] = "Saturday";
 
     return weekday[d.getDay()];
+  },
+  evalDT_TXT(dt_txt){
+    const month = Number(dt_txt.substring(5,7));
+    if(month === 1){
+      return 'January'
+    }else if(month === 2){
+      return 'February'
+    }else if(month === 3){
+      return 'March'
+    }else if(month === 4){
+      return 'April'
+    }else if(month === 5){
+      return 'May'
+    }else if(month === 6){
+      return 'June'
+    }else if(month === 7){
+      return 'July'
+    }else if(month === 8){
+      return 'August'
+    }else if(month === 9){
+      return 'September'
+    }else if(month === 10){
+      return 'October'
+    }else if(month === 11){
+      return 'November'
+    }else if(month === 12){
+      return 'December'
+    }
   },
   evalDateShort(unix_timestamp){
     const d = new Date(unix_timestamp * 1000);
