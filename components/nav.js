@@ -31,15 +31,10 @@ export default class Nav extends React.Component {
       <nav className="navbar navbar-default" style={navStyle}>
         <div className="container-fluid">
           <div className="navbar-header">
-            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false">
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-            </button>
             <Link to="/" className="navbar-brand">Weather & Stuff</Link>
 
           </div>
-          <div className="collapse navbar-collapse navbar-right" id="nav-collapse">
+          <div className="navbar-right">
             <ul className="nav navbar-nav">
               {navItems}
             </ul>

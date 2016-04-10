@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var config = require('../webpack.config.js');
+var config = require('../webpack.config.dev.js');
 var webpack = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
