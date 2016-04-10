@@ -19,7 +19,7 @@ export default class TheApp extends React.Component {
         <p>The weather data is gatherd from <a href="http://openweathermap.org/" target="_blank">OpenWeatherMap</a> with the help of your location or by searching on a city. OpenWeatherMap tries to find the closest weather station to your location or your search.</p>
 
         <h4>Inerested?</h4>
-        <p>If you are interested in how everything works and want to look at the files it's opensource and you can check it out over at <a href="https://github.com/elixir7" target="_blank">Github</a>. Feel free to send in a Pull-Request or an issue if you find something that could be better.</p>
+        <p>If you are interested in how everything works and want to look at the files, it's opensource and you can check it out over at <a href="https://github.com/elixir7" target="_blank">Github</a>. Feel free to send in a Pull-Request or an issue if you find something that could be better.</p>
         <button style={Button} className="text-uppercase">GitHub</button>
       </div>
     );

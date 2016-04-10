@@ -31,7 +31,7 @@ export default class About extends React.Component {
         <a className="text-uppercase" href="https://github.com/elixir7" target="_blank" style={Button}>Github</a>
 
         <h4>Building Stuff</h4>
-        <p>I also love creating thing with my hands. I try to create thing with arduinos usually with Java Script. I recently built a electric longboard that is controlled by a Wii Nunchuck. Check out the teaser video down below ;)</p>
+        <p>I also love creating things with my hands. I try to create things with arduinos usually with Java Script. I recently built a electric longboard that is controlled by a Wii Nunchuck. Check out the teaser video down below ;)</p>
         <a className="text-uppercase" href="https://www.youtube.com/watch?v=zrnrW4HVnzg" target="_blank" style={Button}>Youtube</a>
       </div>
     );
