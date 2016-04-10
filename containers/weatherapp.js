@@ -1,30 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { fetchWeather } from '../redux/actions'
 import Loader from 'react-loader'
 
-import Morning from '../client/images/morning.jpg'
-import Day from '../client/images/day.jpg'
-import Night from '../client/images/night.jpg'
-import Test from '../components/test'
+import Helpers from '../components/helpers'
+
+import Spinner from '../components/spinner'
 import SearchBox from '../components/searchbox'
 import TodayWeatherBox from '../components/todayweatherbox'
 import FutureWeatherBox from '../components/futureweatherbox'
 
-// const height = width * (2000/1124);
-const imgStyle = {
-  backgroundImage: 'url(' + Night + ')',
-  backgroundSize: 'cover',
-  width: "100%",
-}
-
-class WeatherApp extends Component {
+class WeatherApp extends React.Component {
 
   constructor(props) {
     super(props);
     this.search = this.search.bind(this);
     this.changeUnit = this.changeUnit.bind(this);
-    this.evalBackground = this.evalBackground.bind(this);
   }
 
   componentDidMount(){
@@ -53,6 +44,7 @@ class WeatherApp extends Component {
     }
 
     const geolocOptions = {
+      enableHighAccuracy: true,
       timeout: 5000
     }
 
@@ -89,39 +81,32 @@ class WeatherApp extends Component {
     this.props.dispatch(fetchWeather(info, this.props.unit))
   }
 
-  evalBackground(){
-    if(this.props.weather){
-      let background
-      const time = Number(this.props.weather.list[0].dt_txt.substring(11, 13));
-      if(time > 0 && time <= 3 || time >= 18 ){
-        backgroud = Night;
-      }else if(time >= 6 && time > 12){
-        background = Morning;
-      }else {
-        background = Day;
-      }
-    }
-  }
-
   render(){
+    let loadedApp;
+
+    if(this.props.loaded === true){
+      loadedApp = <div style={Helpers.evalBackground(this.props.weather.list[0].dt_txt)}>
+        <SearchBox search={this.search}/>
+        <TodayWeatherBox
+          changeUnit={this.changeUnit}
+          city={this.props.weather.city.name}
+          country={this.props.weather.city.country}
+          temp={this.props.weather.list[0].main.temp}
+          windSpeed={this.props.weather.list[0].wind.speed}
+          icon={this.props.weather.list[0].weather[0].icon}
+          iconID={this.props.weather.list[0].weather[0].id}
+          unit={this.props.unit}/>
+        <FutureWeatherBox
+          unit={this.props.unit}
+          list={this.props.weather.list}/>
+      </div>
+    }else{
+      loadedApp = <Spinner />
+    }
     return (
-      <Loader loaded={this.props.loaded} lines={8} length={0} width={15} radius={30} color="#46ca75" loadedClassName="loader">
-        <div style={imgStyle}>
-          <SearchBox search={this.search}/>
-          <TodayWeatherBox
-            changeUnit={this.changeUnit}
-            city={this.props.weather ? this.props.weather.city.name : null}
-            country={this.props.weather ? this.props.weather.city.country : null}
-            temp={this.props.weather ? this.props.weather.list[0].main.temp : null}
-            windSpeed={this.props.weather ? this.props.weather.list[0].wind.speed : null}
-            icon={this.props.weather ? this.props.weather.list[0].weather[0].icon : null}
-            iconID={this.props.weather ? this.props.weather.list[0].weather[0].id : null}
-            unit={this.props.unit}/>
-          <FutureWeatherBox
-            unit={this.props.unit}
-            list={this.props.weather ? this.props.weather.list : null}/>
-        </div>
-      </Loader>
+      <div>
+        {loadedApp}
+      </div>
   );
   }
 }

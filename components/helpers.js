@@ -1,4 +1,26 @@
+
+import Morning from '../client/images/morning.jpg'
+import Day from '../client/images/day.jpg'
+import Night from '../client/images/night.jpg'
+
 const Helpers = {
+  evalBackground(timeString){
+    let background
+    const time = Number(timeString.substring(11, 13));
+    if(time >= 0 && time <= 3 || time > 18 ){
+      background = Night;
+    }else if(time >= 6 && time < 12 || time === 18){
+      background = Morning;
+    }else {
+      background = Day;
+    }
+    const imgStyle = {
+      backgroundImage: 'url(' + background + ')',
+      backgroundSize: 'cover',
+      width: "100%",
+    }
+    return imgStyle
+  },
   evalUnit(unitText){
     if(unitText === 'metric'){
       return '°C'
@@ -7,7 +29,7 @@ const Helpers = {
     }
   },
   evalTemp(temp, windSpeed, unit){
-    if(temp < 5 && windSpeed > 3){
+    if(temp < 5 && windSpeed > 2){
       const vPow = Math.pow(windSpeed, 0.16);
       const feelsLike = Math.round(13.12 + 0.6215*temp - 11.37*vPow + 0.3965*temp*vPow);
       return 'Feels like ' + feelsLike + Helpers.evalUnit(unit);

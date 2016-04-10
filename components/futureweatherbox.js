@@ -8,8 +8,11 @@ const flexBox ={
 }
 
 export default class FutureWeatherBox extends React.Component {
+
   render() {
-      const futureWeatherBoxItem = this.props.list.map(function(item, key) {
+    let futureWeatherBoxItem;
+    if(this.props.list != null){
+      futureWeatherBoxItem = this.props.list.map(function(item, key) {
         if(item.dt_txt.substring(11, 13) == "15"){
           return (
             <FutureWeatherBoxItem
@@ -23,6 +26,9 @@ export default class FutureWeatherBox extends React.Component {
           );
         }
       }.bind(this));
+    }else {
+      futureWeatherBoxItem = null
+    }
 
 
     return (
