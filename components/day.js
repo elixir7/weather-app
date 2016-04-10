@@ -21,7 +21,7 @@ const cross ={
   color: '#ffffff'
 }
 const wrapper ={
-  paddingBottom: 30,
+  paddingBottom: 120,
   display: 'none'
 }
 

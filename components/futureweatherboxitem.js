@@ -19,7 +19,8 @@ const temp = {
 }
 const flexItem ={
   flexGrow: 1,
-  cursor: 'hand'
+  cursor: 'pointer',
+  paddingBottom: 40
 }
 
 export default class FutureWeatherBoxItem extends React.Component {

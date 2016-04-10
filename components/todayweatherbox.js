@@ -14,7 +14,7 @@ const wrapper = {
   paddingTop: 10,
   marginLeft: 5,
   marginRight: 5,
-  paddingBottom: 200
+  paddingBottom: 250
 }
 const temp = {
   paddingTop: 20,
