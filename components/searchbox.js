@@ -1,11 +1,11 @@
 //This is the searchbox which let's you search on a city
 import React from 'react';
+import Radium from 'radium';
 
 var searchBorder = {
   borderRadius: 50,
   border: "2px solid rgba(0, 0, 0, 0.2)",
-  padding: 10,
-  paddingLeft: 20
+  padding: "10px 10px 10px 20px",
 };
 var searchIconBorder = {
   backgroundColor: "rgba(0, 0, 0, 0)",
@@ -19,7 +19,10 @@ var inputStyle = {
   backgroundColor: "rgba(0, 0, 0, 0)",
   border: "none",
   width: "100%",
-  color: "#ffffff"
+  color: "#ffffff",
+  '::-webkit-input-placeholder': {
+    color: "green",
+  }
 };
 var searchIcon = {
   fontSize: 14,
@@ -32,7 +35,7 @@ var wrapper = {
   paddingLeft: 15
 }
 
-export default class SearchBox extends React.Component {
+class SearchBox extends React.Component {
 
   constructor(props) {
     super(props);
@@ -75,3 +78,5 @@ export default class SearchBox extends React.Component {
     );
   }
 }
+
+module.exports = Radium(SearchBox)

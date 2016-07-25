@@ -41,7 +41,7 @@ class WeatherApp extends React.Component {
     const geolocError = () => {
       const info = {
         pos: {
-          city: "Gothenburg"
+          city: "Stockholm"
         },
         unit: this.props.unit
       }

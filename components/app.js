@@ -30,6 +30,8 @@ const reset = {
 const wrapper = {
   padding: 0,
   margin: 0,
+  width: "100vw",
+  height: "100vh",
   backgroundColor: "#f1f1f1"
 }
 const card = {
@@ -43,6 +45,9 @@ const card = {
   paddingRight: 40,
   marginBottom: 50
 }
+const weatherAppContainer = {
+  maxWidth: 425
+}
 export default class App extends React.Component {
   render(){
     return (
@@ -53,7 +58,7 @@ export default class App extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-xs-12 col-sm-4 col-sm-offset-1">
+          <div className="col-xs-12 col-sm-4 col-sm-offset-1" style={weatherAppContainer}>
             <WeatherApp />
           </div>
           <div className="col-sm-6 hidden-xs" style={card}>
